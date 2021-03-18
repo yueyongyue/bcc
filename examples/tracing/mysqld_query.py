@@ -31,7 +31,8 @@ int do_trace(struct pt_regs *ctx) {
      * Read the first argument from the query-start probe, which is the query.
      * The format of this probe is:
      * query-start(query, connectionid, database, user, host)
-     * see: https://dev.mysql.com/doc/refman/5.7/en/dba-dtrace-ref-query.html
+     * see: https://dev.mysql.com/doc/refman/5.7/en/dba-dtrace-mysqld-ref.html
+     * Support for DTrace is deprecated in MySQL 5.7 and is removed in MySQL 8.0.
      */
     bpf_usdt_readarg(1, ctx, &addr);
     bpf_probe_read_user(&query, sizeof(query), (void *)addr);
